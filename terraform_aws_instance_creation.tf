@@ -19,4 +19,8 @@ resource "aws_instance" "my_ec2_instance" {
                 name = "terraform-ec2-with-terraform"
 }
 }
-              
+
+# See the public IP of an instance
+output "ec2_public_ips" {
+        value = aws_instance.my_ec2_instance.public_ip
+}   
