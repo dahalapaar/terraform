@@ -1,11 +1,11 @@
 terraform {
-        required_providers = {
+        required_providers {
                 aws = {
-                        source = "hasicorp/aws"
+                        source = "hashicorp/aws"
                         version = "~> 4.16"
 }
 }
-version = ">= 1.2.0"
+required_version = ">= 1.2.0"
 }
 
 provider "aws" {
@@ -19,4 +19,4 @@ resource "aws_instance" "my_ec2_instance" {
                 name = "terraform-ec2-with-terraform"
 }
 }
-    
+              
