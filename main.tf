@@ -20,6 +20,15 @@ resource "aws_instance" "my_ec2_instance" {
 }
 }
 
+# AWS S3 Bucket Creation
+resource "aws_s3_bucket" "my_s3_bucket" {
+        bucket = "terraform_bucket7"
+        tags = {
+                Name = "terraform_bucket7"
+                Environment = "Dev"
+}
+}
+
 # See the public IP of an instance
 output "ec2_public_ips" {
         value = aws_instance.my_ec2_instance.public_ip
