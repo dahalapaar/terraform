@@ -33,3 +33,28 @@ resource "aws_s3_bucket" "my_s3_bucket" {
 output "ec2_public_ips" {
         value = aws_instance.my_ec2_instance.public_ip
 }   
+
+
+# Use of meta (count) to create ec2 instances
+resource "aws_instance" "my_ec2_instance" {
+        count = 4
+        ami = "ami-04b70fa74e45c3917"
+        instance_type = "t2.micro"
+        tags = {
+                name = "terraform-ec2-with-terraform - ${count.index}"
+}
+}
+
+# Using Meta (for_each) to create ec2 instance
+locals{
+        instance_names = toset(["apaar", "dahal", "nepal"]) 
+}
+
+resource "aws_instance" "my_ec2_instance" {
+        for_each = local.instance_names
+        ami = "ami-04b70fa74e45c3917"
+        instance_type = "t2.micro"
+        tags = {
+                Name = each.key
+}
+}
